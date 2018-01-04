@@ -27,7 +27,7 @@ namespace PhoneDirectory
             //Phone(dr, "1-541-754-3010");
             //Phone(dr, "1-121-504-8974");
             //Phone(dr, "1-498-512-2222");
-            //Phone(dr, "1-098-512-2222");
+            Console.WriteLine(Phone(dr, "1-098-512-2222"));
             Console.WriteLine(Phone(dr, "5-555-555-5555"));
         }
 
@@ -41,7 +41,24 @@ namespace PhoneDirectory
                 if (!contact.Contains(num))
                 {
                     returnedContact = "Error => Not found: nb";
-                    break;
+                }
+                else
+                {
+                    if (returnedContact != "")
+                    {
+                        returnedContact = "Error => Too many people: nb";
+                    }
+                    else
+                    {
+                        string name = "";
+                        for (int i = 0; i < contact.Length; i++)
+                        {
+                            if (name.Substring(name.IndexOf('<'), name.Length - ))
+                            {
+
+                            }
+                        }
+                    }
                 }
             }
 
