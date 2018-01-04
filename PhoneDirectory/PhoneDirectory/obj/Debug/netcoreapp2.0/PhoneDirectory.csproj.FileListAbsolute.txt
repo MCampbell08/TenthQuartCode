@@ -1,0 +1,11 @@
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\bin\Debug\netcoreapp2.0\PhoneDirectory.deps.json
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\bin\Debug\netcoreapp2.0\PhoneDirectory.runtimeconfig.json
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\bin\Debug\netcoreapp2.0\PhoneDirectory.runtimeconfig.dev.json
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\bin\Debug\netcoreapp2.0\PhoneDirectory.dll
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\bin\Debug\netcoreapp2.0\PhoneDirectory.pdb
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\obj\Debug\netcoreapp2.0\PhoneDirectory.csprojResolveAssemblyReference.cache
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\obj\Debug\netcoreapp2.0\PhoneDirectory.csproj.CoreCompileInputs.cache
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\obj\Debug\netcoreapp2.0\PhoneDirectory.AssemblyInfoInputs.cache
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\obj\Debug\netcoreapp2.0\PhoneDirectory.AssemblyInfo.cs
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\obj\Debug\netcoreapp2.0\PhoneDirectory.dll
+C:\TenthQuartCode\PhoneDirectory\PhoneDirectory\obj\Debug\netcoreapp2.0\PhoneDirectory.pdb
