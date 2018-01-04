@@ -664,7 +664,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\waffl\\.nuget\\packages\\": {},
+    "C:\\Users\\WaffleDefender\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
@@ -676,14 +676,14 @@
       "projectUniqueName": "C:\\TenthQuartCode\\PhoneDirectory\\PhoneDirectory\\PhoneDirectory.csproj",
       "projectName": "PhoneDirectory",
       "projectPath": "C:\\TenthQuartCode\\PhoneDirectory\\PhoneDirectory\\PhoneDirectory.csproj",
-      "packagesPath": "C:\\Users\\waffl\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\WaffleDefender\\.nuget\\packages\\",
       "outputPath": "C:\\TenthQuartCode\\PhoneDirectory\\PhoneDirectory\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\waffl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\WaffleDefender\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

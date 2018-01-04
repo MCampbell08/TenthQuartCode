@@ -26,7 +26,7 @@ namespace PhoneDirectory
             //Phone(dr, "1-908-512-2222");
             //Phone(dr, "1-541-754-3010");
             //Phone(dr, "1-121-504-8974");
-            //Phone(dr, "1-498-512-2222");
+            Console.WriteLine(Phone(dr, "1-498-512-2222"));
             Console.WriteLine(Phone(dr, "1-098-512-2222"));
             Console.WriteLine(Phone(dr, "5-555-555-5555"));
         }
@@ -38,26 +38,16 @@ namespace PhoneDirectory
 
             foreach (string contact in contacts)
             {
+                StringBuilder changedContactString = new StringBuilder(contact);
                 if (!contact.Contains(num))
-                {
                     returnedContact = "Error => Not found: nb";
-                }
                 else
                 {
-                    if (returnedContact != "")
-                    {
+                    if (returnedContact != "" && returnedContact != "Error => Not found: nb")
                         returnedContact = "Error => Too many people: nb";
-                    }
                     else
                     {
-                        string name = "";
-                        for (int i = 0; i < contact.Length; i++)
-                        {
-                            if (name.Substring(name.IndexOf('<'), name.Length - ))
-                            {
-
-                            }
-                        }
+                        string name = contact.Substring(contact.IndexOf('<'), LengthOfName(contact));
                     }
                 }
             }
@@ -79,15 +69,34 @@ namespace PhoneDirectory
                 if (c == '\n')
                 {
                     contactsList.Add(stringBuilder.ToString());
+                    stringBuilder.Clear();
                 }
 
                 counter++;
                 c = contacts[counter];
                 if (counter == contacts.Length - 1)
-                    done = true; 
+                    done = true;
             }
 
             return contactsList;
+        }
+
+        private static int LengthOfName(string contact)
+        {
+            bool count = false;
+            int counter = 0;
+            foreach (char c in contact)
+            {
+                if (c == '<')
+                    count = true;
+                if (c == '>')
+                    count = false;
+
+                if (count)
+                    counter++;
+
+            }
+            return counter;
         }
 
         //private string example()
