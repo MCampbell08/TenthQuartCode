@@ -50,6 +50,14 @@ namespace PhoneDirectory
                     }
                     else
                     {
+                        bool count = false;
+                        foreach(char c in contact)
+                        {
+                            if (c == '<')
+                            {
+
+                            }
+                        }
                         string name = "";
                         for (int i = 0; i < contact.Length; i++)
                         {
