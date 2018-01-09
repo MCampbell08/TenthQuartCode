@@ -2,11 +2,19 @@
 
 namespace L1_Isomorphic_Strings
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-
+            string filePath = "";
+            Console.Write("Please specify a file path to check: ");
+            
+            while (!System.IO.Directory.Exists(filePath = Console.ReadLine()))
+            {
+                Console.Write("Try again: ");
+            }
+            IsomorphicController isomorphicController = new IsomorphicController(filePath);
+            isomorphicController.FindIsomorphs();
         }
     }
 }
