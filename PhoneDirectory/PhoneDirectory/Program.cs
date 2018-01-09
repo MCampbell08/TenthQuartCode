@@ -21,12 +21,21 @@ namespace PhoneDirectory
                 + "+1-099-500-8000 <Peter Crush> Labrador Bd.\n +1-931-512-4855 <William Saurin> Bison Street CQ-23071\n"
                 + "<P Salinge> Main Street, +1-098-512-2222, Denve\n" + "<P Salinge> Main Street, +1-098-512-2222, Denve\n";
 
+<<<<<<< HEAD
             Console.WriteLine(Phone(dr, "48-421-674-8974"));
             Console.WriteLine(Phone(dr, "1-921-512-2222"));
             Console.WriteLine(Phone(dr, "1-908-512-2222"));
             Console.WriteLine(Phone(dr, "1-541-754-3010"));
             Console.WriteLine(Phone(dr, "1-121-504-8974"));
             Console.WriteLine(Phone(dr, "1-498-512-2222"));
+=======
+            //Phone(dr, "48-421-674-8974");
+            //Phone(dr, "1-921-512-2222");
+            //Phone(dr, "1-908-512-2222");
+            //Phone(dr, "1-541-754-3010");
+            //Phone(dr, "1-121-504-8974");
+            //Phone(dr, "1-498-512-2222");
+>>>>>>> origin/master
             Console.WriteLine(Phone(dr, "1-098-512-2222"));
             Console.WriteLine(Phone(dr, "5-555-555-5555"));
         }
@@ -38,8 +47,8 @@ namespace PhoneDirectory
             bool contactFound = true;
             foreach (string contact in contacts)
             {
-                StringBuilder changedContactString = new StringBuilder(contact);
                 if (!contact.Contains(num))
+<<<<<<< HEAD
                     contactFound = false;
                 else
                 {
@@ -54,6 +63,35 @@ namespace PhoneDirectory
 
                         string address = Regex.Replace(changedContactString.ToString().Replace(";", "").Replace("?", "").Replace(",", "").Replace("$", "").Replace("/", "").Replace(":", "").Replace("*", "").Replace("!", "").Replace("_", ""), @"\s+", " ");
                         returnedContact = "Phone => " + num + ", Name => "  + name + ", Address => " + address;
+=======
+                {
+                    returnedContact = "Error => Not found: nb";
+                }
+                else
+                {
+                    if (returnedContact != "")
+                    {
+                        returnedContact = "Error => Too many people: nb";
+                    }
+                    else
+                    {
+                        bool count = false;
+                        foreach(char c in contact)
+                        {
+                            if (c == '<')
+                            {
+
+                            }
+                        }
+                        string name = "";
+                        for (int i = 0; i < contact.Length; i++)
+                        {
+                            if (name.Substring(name.IndexOf('<'), name.Length - ))
+                            {
+
+                            }
+                        }
+>>>>>>> origin/master
                     }
                 }
             }
@@ -78,18 +116,18 @@ namespace PhoneDirectory
                 {
                     stringBuilder.Remove(stringBuilder.Length - 1, 1);
                     contactsList.Add(stringBuilder.ToString());
-                    stringBuilder.Clear();
                 }
 
                 counter++;
                 c = contacts[counter];
                 if (counter == contacts.Length - 1)
-                    done = true;
+                    done = true; 
             }
 
             return contactsList;
         }
 
+<<<<<<< HEAD
         private static int LengthOfName(string contact)
         {
             bool count = false;
@@ -107,5 +145,18 @@ namespace PhoneDirectory
             }
             return counter;
         }
+=======
+        //private string example()
+        //{
+        //    string pattern = "@\\d+";
+        //    string text = "My favorite number is 8, while yours is 24.";
+
+        //    Regex regex = new Regex(pattern);
+
+        //    return regex.Match(text).ToString();
+        //}
+
+
+>>>>>>> origin/master
     }
 }
