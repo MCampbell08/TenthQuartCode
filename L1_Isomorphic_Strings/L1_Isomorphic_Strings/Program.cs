@@ -9,7 +9,7 @@ namespace L1_Isomorphic_Strings
             string filePath = "";
             Console.Write("Please specify a file path to check: ");
             
-            while (!System.IO.Directory.Exists(filePath = Console.ReadLine()))
+            while (!System.IO.File.Exists(filePath = Console.ReadLine()))
             {
                 Console.Write("Try again: ");
             }
