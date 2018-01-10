@@ -14,7 +14,7 @@ namespace L1_Isomorphic_Strings
                 Console.Write("Try again: ");
             }
             IsomorphicController isomorphicController = new IsomorphicController(filePath);
-            isomorphicController.FindIsomorphs();
+            isomorphicController.Run();
         }
     }
 }
