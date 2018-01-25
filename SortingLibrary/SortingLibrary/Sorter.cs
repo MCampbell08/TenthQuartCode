@@ -25,7 +25,7 @@ namespace SortingLibrary
                     }
                     else
                     {
-                        counter++; 
+                        counter++;
                     }
                 }
             }
@@ -70,34 +70,81 @@ namespace SortingLibrary
         }
         public static void MergeSort(T[] inputArray)
         {
-            T[] leftInputArray = new T[inputArray.Length/2];
-            T[] rightInputArray = new T[inputArray.Length / 2];
-            T[] sortedArray = new T[inputArray.Length];
-
-            for (int i = 0; i < inputArray.Length; i++)
-            {
-                if (i < inputArray.Length / 2)
-                    leftInputArray[i] = inputArray[i];
-                else
-                    rightInputArray[i] = inputArray[i];
-            }
-
+            MergeSplitter(inputArray, 0, inputArray.Length - 1);
         }
-        private static T[] Merge(T[] inputArray)
+        private static void MergeSplitter(T[] inputArray, int left, int right)
         {
-            bool done = false;
-            int counter = 0;
-
-            while (!done)
+            if (right > left)
             {
+                int mid = (right + left) / 2;
 
+                MergeSplitter(inputArray, left, mid);
+                MergeSplitter(inputArray, (mid + 1), right);
+
+                Merge(inputArray, left, (mid + 1), right);
+            }
+        }
+        private static void Merge(T[] inputArray, int leftPos, int midPos, int rightPos)
+        {
+            T[] temp = new T[inputArray.Length];
+
+            int leftEnd = (midPos - 1); ;
+            int numOfElem = (rightPos - leftPos + 1);
+            int tempPos = leftPos;
+
+            while ((leftPos <= leftEnd) && (midPos <= rightPos))
+            {
+                if (inputArray[leftPos].CompareTo(inputArray[midPos]) < 0)
+                    temp[tempPos++] = inputArray[leftPos++];
+                else
+                    temp[tempPos++] = inputArray[midPos++];
             }
 
-            return inputArray;
+            while (leftPos <= leftEnd)
+                temp[tempPos++] = inputArray[leftPos++];
+
+            while (midPos <= rightPos)
+                temp[tempPos++] = inputArray[midPos++];
+
+            for (int i = 0; i < numOfElem; i++)
+            {
+                inputArray[rightPos] = temp[rightPos];
+                rightPos--;
+            }
         }
         public static void QuickSort(T[] inputArray)
         {
+            SortPivot(inputArray, 0, inputArray.Length - 1);
+        }
+        private static void SortPivot(T[] inputArray, int left, int right){
+            int leftTempPos = left;
+            int rightTempPos = right;
 
+            T pivotPoint = inputArray[(leftTempPos + rightTempPos) / 2];
+
+            while (leftTempPos <= rightTempPos)
+            {
+                while (inputArray[leftTempPos].CompareTo(pivotPoint) < 0)
+                    leftTempPos++;
+
+                while (inputArray[rightTempPos].CompareTo(pivotPoint) > 0)
+                    rightTempPos--;
+
+                if (leftTempPos <= rightTempPos)
+                {
+                    T tempObject = inputArray[leftTempPos];
+                    inputArray[leftTempPos] = inputArray[rightTempPos];
+                    inputArray[rightTempPos] = tempObject;
+
+                    leftTempPos++; rightTempPos--;
+                }
+
+                if (left < rightTempPos)
+                    SortPivot(inputArray, left, rightTempPos);
+
+                if (right > leftTempPos)
+                    SortPivot(inputArray, leftTempPos, right);
+            }
         }
     }
 }

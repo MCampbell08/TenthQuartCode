@@ -7,7 +7,7 @@ namespace KataAmount
     {
         public static void Main(string[] args)
         {
-            List<long> list = JohnAnn.John(11);
+            List<long> list = JohnAnn.Ann(15);
 
             foreach(long l in list)
             {
