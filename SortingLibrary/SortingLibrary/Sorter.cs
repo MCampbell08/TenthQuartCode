@@ -68,5 +68,36 @@ namespace SortingLibrary
                 inputArray[previousInputLoc + 1] = temp;
             }
         }
+        public static void MergeSort(T[] inputArray)
+        {
+            T[] leftInputArray = new T[inputArray.Length/2];
+            T[] rightInputArray = new T[inputArray.Length / 2];
+            T[] sortedArray = new T[inputArray.Length];
+
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                if (i < inputArray.Length / 2)
+                    leftInputArray[i] = inputArray[i];
+                else
+                    rightInputArray[i] = inputArray[i];
+            }
+
+        }
+        private static T[] Merge(T[] inputArray)
+        {
+            bool done = false;
+            int counter = 0;
+
+            while (!done)
+            {
+
+            }
+
+            return inputArray;
+        }
+        public static void QuickSort(T[] inputArray)
+        {
+
+        }
     }
 }
