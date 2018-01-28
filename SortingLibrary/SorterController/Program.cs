@@ -8,12 +8,9 @@ namespace SorterController
         {
             int[] inputArray = new int[] { 6, 19, 3, 65, 0, 2};
 
-            SortingLibrary.Sorter<int>.QuickSort(inputArray);
-
-            foreach (int i in inputArray)
-            {
-                Console.Write(i + ", ");
-            }
+            SortingLibrary.Sorter<int>.MergeSort(inputArray);
+            
+            Console.WriteLine(string.Join(',', inputArray));
         }
     }
 }
