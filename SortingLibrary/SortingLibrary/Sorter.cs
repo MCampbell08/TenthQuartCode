@@ -11,8 +11,6 @@ namespace SortingLibrary
             bool done = false;
             while (!done) {
                 int counter = 0;
-                T objectT = inputArray[counter];
-                int choice = inputArray[counter + 1].CompareTo(inputArray[counter]);
                 done = true;
                 while (counter < inputArray.Length - 1)
                 {
