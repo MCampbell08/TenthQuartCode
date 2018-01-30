@@ -43,7 +43,7 @@ namespace SortingLibrary
                         leastInput = j;
                     }
                 }
-                T tempObject = inputArray[i];
+                T tempObject = inputArray[i];   
                 inputArray[i] = inputArray[leastInput];
                 inputArray[leastInput] = tempObject;
             }
