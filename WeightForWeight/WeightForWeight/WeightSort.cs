@@ -84,7 +84,7 @@ namespace WeightForWeight
                                 break;
                             if (weightBucket[i][j] > weightBucket[i + 1][j])
                             {
-                                SortSameWeight(weightBucket, i);
+                                SwitchWeights(weightBucket, i);
                                 done = false;
                                 break;
                             }
@@ -92,7 +92,7 @@ namespace WeightForWeight
                             {
                                 if (int.Parse(weightBucket[i][j + 1].ToString()) == 0)
                                 {
-                                    SortSameWeight(weightBucket, i);
+                                    SwitchWeights(weightBucket, i);
                                     done = false;
                                     break;
                                 }
@@ -103,7 +103,7 @@ namespace WeightForWeight
             }
         }
 
-        private static void SortSameWeight(string[] weightBucket, int i)
+        private static void SwitchWeights(string[] weightBucket, int i)
         {
             string tempObjectWeight = weightBucket[i];
             weightBucket[i] = weightBucket[i + 1];
