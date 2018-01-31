@@ -80,6 +80,8 @@ namespace WeightForWeight
                     {
                         for (int j = 0; j <= weightBucket[i].Length - 1 && j <= weightBucket[i + 1].Length - 1; j++)
                         {
+                            if (weightBucket[i][0] < weightBucket[i + 1][0])
+                                break;
                             if (weightBucket[i][j] > weightBucket[i + 1][j])
                             {
                                 SortSameWeight(weightBucket, i);
