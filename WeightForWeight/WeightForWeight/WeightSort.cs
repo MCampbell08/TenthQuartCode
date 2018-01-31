@@ -82,19 +82,16 @@ namespace WeightForWeight
                         {
                             if (weightBucket[i][j] > weightBucket[i + 1][j])
                             {
-                                string tempObjectWeight = weightBucket[i];
-                                weightBucket[i] = weightBucket[i + 1];
-                                weightBucket[i + 1] = tempObjectWeight;
-                                i--;
+                                SortSameWeight(weightBucket, i);
+                                done = false;
                                 break;
                             }
-                            else if (weightBucket[i][j] == weightBucket[i + 1][j])
+                            else if (weightBucket[i][j] == weightBucket[i + 1][j] && weightBucket[i].Length > 1)
                             {
-                                if (int.Parse(weightBucket[i][j + 1].ToString()) == 0 || int.Parse(weightBucket[i + 1][j + 1].ToString()) == 0)
+                                if (int.Parse(weightBucket[i][j + 1].ToString()) == 0)
                                 {
-                                    string tempObjectWeight = weightBucket[i];
-                                    weightBucket[i] = weightBucket[i + 1];
-                                    weightBucket[i + 1] = tempObjectWeight;
+                                    SortSameWeight(weightBucket, i);
+                                    done = false;
                                     break;
                                 }
                             }
@@ -102,6 +99,13 @@ namespace WeightForWeight
                     }
                 }
             }
+        }
+
+        private static void SortSameWeight(string[] weightBucket, int i)
+        {
+            string tempObjectWeight = weightBucket[i];
+            weightBucket[i] = weightBucket[i + 1];
+            weightBucket[i + 1] = tempObjectWeight;
         }
     }
 }
