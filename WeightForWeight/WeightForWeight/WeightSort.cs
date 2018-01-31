@@ -70,28 +70,33 @@ namespace WeightForWeight
 
         private static void SortSameWeight(string[] weightBucket, int[] weightsWeight)
         {
-            for (int i = 0; i < weightsWeight.Length - 1; i++)
+            bool done = false;
+            while (!done)
             {
-                if (weightsWeight[i] == weightsWeight[i + 1] && weightBucket[i] != weightBucket[i + 1])
+                done = true;
+                for (int i = 0; i < weightsWeight.Length - 1; i++)
                 {
-                    for (int j = 0; j <= weightBucket[i].Length - 1 && j <= weightBucket[i + 1].Length - 1; j++)
+                    if (weightsWeight[i] == weightsWeight[i + 1] && weightBucket[i] != weightBucket[i + 1])
                     {
-                        if (weightBucket[i][j] > weightBucket[i + 1][j])
+                        for (int j = 0; j <= weightBucket[i].Length - 1 && j <= weightBucket[i + 1].Length - 1; j++)
                         {
-                            string tempObjectWeight = weightBucket[i];
-                            weightBucket[i] = weightBucket[i + 1];
-                            weightBucket[i + 1] = tempObjectWeight;
-                            i--;
-                            break;
-                        }
-                        else if (weightBucket[i][j] == weightBucket[i + 1][j])
-                        {
-                            if (int.Parse(weightBucket[i][j + 1].ToString()) == 0 || int.Parse(weightBucket[i + 1][j + 1].ToString()) == 0)
+                            if (weightBucket[i][j] > weightBucket[i + 1][j])
                             {
                                 string tempObjectWeight = weightBucket[i];
                                 weightBucket[i] = weightBucket[i + 1];
                                 weightBucket[i + 1] = tempObjectWeight;
+                                i--;
                                 break;
+                            }
+                            else if (weightBucket[i][j] == weightBucket[i + 1][j])
+                            {
+                                if (int.Parse(weightBucket[i][j + 1].ToString()) == 0 || int.Parse(weightBucket[i + 1][j + 1].ToString()) == 0)
+                                {
+                                    string tempObjectWeight = weightBucket[i];
+                                    weightBucket[i] = weightBucket[i + 1];
+                                    weightBucket[i + 1] = tempObjectWeight;
+                                    break;
+                                }
                             }
                         }
                     }
