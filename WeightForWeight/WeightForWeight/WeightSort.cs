@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace WeightForWeight
 {
@@ -8,68 +10,53 @@ namespace WeightForWeight
     {
         public static string OrderWeight(string strng)
         {
-            strng = strng.Trim();
-            List<int> removalSpots = new List<int>();
-
-            for (int i = 0; i < strng.Length - 1; i++)
-            {
-                if (strng[i] == ' ' && strng[i + 1] == ' ')
-                {
-                    removalSpots.Add(i);
-                }
-            }
-
-            foreach(int x in removalSpots)
-            {
-                strng = strng.Remove(x, 1);
-            }
+            RegexOptions options = RegexOptions.None;
+            Regex regex = new Regex("[ ]{2,}", options);
+            strng = regex.Replace(strng, " ");
 
             string[] weightBucket = strng.Split(' ');
             int[] weightsWeight = new int[weightBucket.Length];
+
+
             int counter = 0;
+
             foreach(string s in weightBucket)
             {
-                int amount = 0;
-                foreach (char c in s)
-                {
-                    amount += Int32.Parse(c.ToString());
-                }
-                weightsWeight[counter] = amount;
+                var result = s.Select(x => int.Parse(x.ToString())).Sum();
+                weightsWeight[counter] = result;
                 counter++;
             }
-
-            SelectionSort(weightBucket, weightsWeight);
+            
+            InsertionSort(weightBucket, weightsWeight);
             SortSameWeight(weightBucket, weightsWeight);
 
             return string.Join(' ', weightBucket);
         }
-        private static void SelectionSort(string[] weightBucket, int[] weightsWeight)
+        public static void InsertionSort(string[] weightBucket, int[] weightsWeight)
         {
-            int leastInput = 0;
+            int previousInputLoc = 0;
+            string temp = weightBucket[0];
+            int tempWeight = weightsWeight[0];
 
-            for (int i = 0; i < weightsWeight.Length; i++)
+            for (int i = 1; i < weightsWeight.Length; i++)
             {
-                leastInput = i;
+                temp = weightBucket[i];
+                tempWeight = weightsWeight[i];
+                previousInputLoc = i - 1;
 
-                for (int j = i + 1; j < weightsWeight.Length; j++)
+                while (previousInputLoc >= 0 && weightsWeight[previousInputLoc].CompareTo(tempWeight) > 0)
                 {
-                    if (weightsWeight[j].CompareTo(weightsWeight[leastInput]) < 0)
-                    {
-                        leastInput = j;
-                    }
+                    weightsWeight[previousInputLoc + 1] = weightsWeight[previousInputLoc];
+                    weightBucket[previousInputLoc + 1] = weightBucket[previousInputLoc];
+                    previousInputLoc--;
                 }
-                int tempObject = weightsWeight[i];
-                weightsWeight[i] = weightsWeight[leastInput];
-                weightsWeight[leastInput] = tempObject;
-
-                string tempObjectWeight = weightBucket[i];
-                weightBucket[i] = weightBucket[leastInput];
-                weightBucket[leastInput] = tempObjectWeight;
+                weightBucket[previousInputLoc + 1] = temp;
+                weightsWeight[previousInputLoc + 1] = tempWeight;
             }
         }
-
         private static void SortSameWeight(string[] weightBucket, int[] weightsWeight)
         {
+            int counter = 0;
             bool done = false;
             while (!done)
             {
@@ -78,29 +65,22 @@ namespace WeightForWeight
                 {
                     if (weightsWeight[i] == weightsWeight[i + 1] && weightBucket[i] != weightBucket[i + 1])
                     {
-                        for (int j = 0; j <= weightBucket[i].Length - 1 && j <= weightBucket[i + 1].Length - 1; j++)
+                        counter = 0;
+                        while (counter < 2 && (counter <= weightBucket[i].Length / 2 && counter <= weightBucket[i + 1].Length / 2))
                         {
                             if (weightBucket[i][0] < weightBucket[i + 1][0])
                                 break;
-                            if (weightBucket[i][j] > weightBucket[i + 1][j])
+                            if ((weightBucket[i][counter] == weightBucket[i + 1][counter] && weightBucket[i].Length > 1 && int.Parse(weightBucket[i][counter + 1].ToString()) == 0) || weightBucket[i][counter] > weightBucket[i + 1][counter])
                             {
                                 SwitchWeights(weightBucket, i);
                                 done = false;
-                                break;
                             }
-                            else if (weightBucket[i][j] == weightBucket[i + 1][j] && weightBucket[i].Length > 1)
-                            {
-                                if (int.Parse(weightBucket[i][j + 1].ToString()) == 0)
-                                {
-                                    SwitchWeights(weightBucket, i);
-                                    done = false;
-                                    break;
-                                }
-                            }
+                            counter++;
                         }
                     }
                 }
             }
+            Console.WriteLine("Hello");
         }
 
         private static void SwitchWeights(string[] weightBucket, int i)
