@@ -6,37 +6,37 @@ namespace SpecialMultiples
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            CountSpecMult(0, 30);
+            CountSpecMult(2, 100);
         }
 
         public static long CountSpecMult(long n, long mxval)
         {
-            long finalResult = 0;
-            int counter = 1;
+            int count = 1;
+            long prime = 1;
 
-            bool[] array = new bool[mxval];
-            for (int i = 0; i < array.Length - 1; i++)
-                array[i] = true;
-
-            for (int i = 2; i < Math.Sqrt(mxval); i++)
+            for (int i = 2; count <= n; i++)
             {
-                array[i] = true;
-                int tempNum = counter * i;
-                for (int j = (i*i); j < mxval; j+=tempNum)
+                if (IsPrime(i))
                 {
-                    array[j] = false;
-                    counter++;
-                }
-            }
-            for(int num = 0; num < array.Length - 1; num++)
-            {
-                if (array[num]) {
-                    Console.Write(num + ", ");
+                    prime *= i;
+                    count++;
                 }
             }
 
-            return finalResult;
+            return (int)Math.Floor((double)(mxval / prime));
+        }
+        public static bool IsPrime(long n)
+        {
+            if (n == 2)
+                return true;
+            else if (n % 2 == 0)
+                return false;
+
+            for (long i = 3; i <= Math.Sqrt(n) + 1; i += 2)
+            {
+                if (n % i == 0) return false;
+            }
+            return true;
         }
     }
 }
