@@ -40,31 +40,45 @@ namespace AlgoDataStrucutres
             if (root == null)
                 root = n;
             else
-                //Last.prevNode = Last;
+            {
                 Last.nextNode = n;
+                if (Count != 1)
+                    Last.prevNode = n.prevNode;
+            }
             _count++;
         }
         public void Insert(T val, int index)
         {
-            if (index < 0 || index == Count || index > Count)
-                throw new IndexOutOfRangeException();
+            Node n, nextNode, prevNode;
 
-            Node n = new Node { data = val };
+            CheckInbounds(index);
+
+            n = root;
             for (int i = 0; i < index; i++)
-            {
                 n = n.nextNode;
+            if (index == 0)
+            {
+                root = new Node { data = val, nextNode = n };
+                root.nextNode.prevNode = root;
             }
-            //n.prevNode = n;
-            Node nextNode = n.nextNode;
-            n.nextNode = new Node { data = val };
+            else {
+                nextNode = n;
+                prevNode = n.prevNode;
+
+                n = new Node { data = val };
+
+                prevNode.nextNode = n;
+                nextNode.prevNode = n;
+                n.nextNode = nextNode;
+                n.prevNode = prevNode;
+            }
             _count++;
         }
         public int Count { get { return _count; }}
         public T Get(int index)
         {
-            if (index < 0 || index == Count || index > Count)
-                throw new IndexOutOfRangeException();
-            
+            CheckInbounds(index);
+
             Node node = root;
             for (int i = 0; i < index; i++)
             {
@@ -74,16 +88,86 @@ namespace AlgoDataStrucutres
         }
         public T Remove()
         {
+            Node node = root;
+
+            root = root.nextNode;
+            root.prevNode = null;
+
+            _count--;
+
+            return (T)node.data;
+        }
+        public T RemoveAt(int index)
+        {
+            CheckInbounds(index);
+
+            Node node = root;
+
+            for (int i = 0; i < index; i++)
+            {
+                node = node.nextNode;
+            }
+
+            node.prevNode.nextNode = node.nextNode;
+            node.nextNode.prevNode = node.prevNode;
+
+            _count--;
+
+            return (T)node.data;
+        }
+        public T RemoveLast()
+        {
             Node node = Last;
 
-            for (int i = Count; i > -1; i--)
-            {
-                if (node.prevNode != null)
-                {
-                    node = node.prevNode;
-                }
-            }
+            node.prevNode.nextNode = null;
+
+            _count--;
+
             return (T)node.data;
+        }
+        public override string ToString()
+        {
+            if (root == null)
+                return "";
+
+            StringBuilder stringBuilder = new StringBuilder();
+            Node node = root;
+
+            stringBuilder.Append(node.data + ", ");
+
+            for (int i = 0; i < Count - 1; i++)
+            {
+                node = node.nextNode;
+                if (i < Count - 2)
+                    stringBuilder.Append(node.data + ", ");
+                else
+                    stringBuilder.Append(Last.data);
+            }
+
+            return stringBuilder.ToString();
+        }
+        public void Clear()
+        {
+            root = null;
+            _count = 0;
+        }
+        public int Search(T val)
+        {
+            Node node = root;
+
+            for (int i = 0; i < Count - 1; i++)
+            {
+                if (node.data.Equals((object)val))
+                    return i;
+                node = node.nextNode;
+            }
+
+            return -1;
+        }
+        private void CheckInbounds(int index)
+        {
+            if (index < 0 || index == Count || index > Count)
+                throw new IndexOutOfRangeException();
         }
     }
 }

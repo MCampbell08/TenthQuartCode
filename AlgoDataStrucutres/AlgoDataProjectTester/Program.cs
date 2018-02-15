@@ -15,8 +15,17 @@ namespace AlgoDataProjectTester
             list.Add(3);
             list.Add(4);
             list.Add(5);
-            
 
+            list.Insert(5, 4);
+
+            int num = list.Get(5);
+
+            num = list.RemoveLast();
+
+            num = list.Search(7);
+
+            list.Clear();
+            Console.WriteLine(list.ToString());
         }
     }
 }
