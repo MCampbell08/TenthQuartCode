@@ -15,6 +15,7 @@ namespace AlgoDataProjectTester
             list.Add(3);
             list.Add(4);
             list.Add(5);
+            
 
         }
     }

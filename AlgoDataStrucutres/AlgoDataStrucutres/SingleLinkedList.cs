@@ -24,9 +24,11 @@ namespace AlgoDataStrucutres
                 if (curr == null)
                     return null;
                 while (curr.nextNode != null)
-                    curr.prevNode = curr;
+                {
+                    Node temp = curr;
                     curr = curr.nextNode;
-
+                    curr.prevNode = temp;
+                }
                 return curr;
             }
 
@@ -36,10 +38,7 @@ namespace AlgoDataStrucutres
             Node n = new Node { data = val };
 
             if (root == null)
-            {
                 root = n;
-                Last = root;
-            }
             else
                 //Last.prevNode = Last;
                 Last.nextNode = n;
