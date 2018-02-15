@@ -8,6 +8,7 @@ namespace AlgoDataStrucutres
     {
         public class Node
         {
+            public Node prevNode = null;
             public Node nextNode = null;
             public object data = null;
         }
@@ -23,18 +24,24 @@ namespace AlgoDataStrucutres
                 if (curr == null)
                     return null;
                 while (curr.nextNode != null)
+                    curr.prevNode = curr;
                     curr = curr.nextNode;
 
                 return curr;
             }
+
         }
         public void Add(T val)
         {
             Node n = new Node { data = val };
 
             if (root == null)
+            {
                 root = n;
+                Last = root;
+            }
             else
+                //Last.prevNode = Last;
                 Last.nextNode = n;
             _count++;
         }
@@ -48,6 +55,7 @@ namespace AlgoDataStrucutres
             {
                 n = n.nextNode;
             }
+            //n.prevNode = n;
             Node nextNode = n.nextNode;
             n.nextNode = new Node { data = val };
             _count++;
@@ -67,13 +75,16 @@ namespace AlgoDataStrucutres
         }
         public T Remove()
         {
-            Node node = root;
+            Node node = Last;
 
-            for ()
+            for (int i = Count; i > -1; i--)
             {
-
+                if (node.prevNode != null)
+                {
+                    node = node.prevNode;
+                }
             }
-            return node.data;
+            return (T)node.data;
         }
     }
 }
