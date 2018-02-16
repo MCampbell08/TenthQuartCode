@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlgoDataStrucutres
 {
-    public class SingleLinkedList <T>
+    public class DoubleLinkedList<T>
     {
         public class Node
         {
@@ -61,7 +61,8 @@ namespace AlgoDataStrucutres
                 root = new Node { data = val, nextNode = n };
                 root.nextNode.prevNode = root;
             }
-            else {
+            else
+            {
                 nextNode = n;
                 prevNode = n.prevNode;
 
@@ -74,16 +75,13 @@ namespace AlgoDataStrucutres
             }
             _count++;
         }
-        public int Count { get { return _count; }}
+        public int Count { get { return _count; } }
         public T Get(int index)
         {
             CheckInbounds(index);
 
-            Node node = root;
-            for (int i = 0; i < index; i++)
-            {
-                node = node.nextNode;
-            }
+            Node node = FastestNodeSelection(index);
+
             return (T)node.data;
         }
         public T Remove()
@@ -100,13 +98,7 @@ namespace AlgoDataStrucutres
         public T RemoveAt(int index)
         {
             CheckInbounds(index);
-
-            Node node = root;
-
-            for (int i = 0; i < index; i++)
-            {
-                node = node.nextNode;
-            }
+            Node node = FastestNodeSelection(index);
 
             node.prevNode.nextNode = node.nextNode;
             node.nextNode.prevNode = node.prevNode;
@@ -115,6 +107,8 @@ namespace AlgoDataStrucutres
 
             return (T)node.data;
         }
+
+
         public T RemoveLast()
         {
             Node node = Last;
@@ -168,6 +162,24 @@ namespace AlgoDataStrucutres
         {
             if (index < 0 || index == Count || index > Count)
                 throw new IndexOutOfRangeException();
+        }
+        private Node FastestNodeSelection(int index)
+        {
+            Node node = null;
+            if (Count / 2 >= index)
+            {
+                node = root;
+                for (int i = 0; i < index; i++)
+                    node = node.nextNode;
+            }
+            else
+            {
+                node = Last;
+                for (int i = Count; i > index; i--)
+                    node = node.prevNode;
+            }
+
+            return node;
         }
     }
 }
