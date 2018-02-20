@@ -159,5 +159,43 @@ namespace AlgoDataStructures
                 return righth + 1;
             }
         }
+        public string InOrder()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            T[] list = new T[Count];
+
+
+            AddInOrder(list, root);
+
+            return stringBuilder.ToString();
+        }
+        private T[] AddInOrder(T[] list, Node node)
+        {
+            if (node != null)
+            {
+                if (list.Length == 0)
+                {
+                    list[0] = (T)node.data;
+                }
+                else
+                {
+                    for (int i = 0; i < list.Length; i++)
+                    {
+                        if (list[i].CompareTo(node.data) <= 0)
+                        {
+                            list[i + 1] = (T)node.data;
+                        }
+                        else
+                        {
+                            list[i + 1] = list[i];
+                            list[i] = node.data;
+                        }
+                    }
+                    Counter(node.leftLeaf);
+                    Counter(node.rightLeaf);
+                }
+            }
+            return list;
+        }
     }
 }
