@@ -120,6 +120,7 @@ namespace AlgoDataStructures
         public int Count
         {
             get {
+                _count = 0;
                 Counter(root);
                 return _count;
             }
@@ -164,7 +165,9 @@ namespace AlgoDataStructures
             StringBuilder stringBuilder = new StringBuilder();
             T[] list = new T[Count];
 
-
+            for (int i = 0; i < Count - 1; i++)
+                list[i] = default(T);
+                
             AddInOrder(list, root);
 
             return stringBuilder.ToString();
@@ -173,7 +176,7 @@ namespace AlgoDataStructures
         {
             if (node != null)
             {
-                if (list.Length == 0)
+                if (list[0].CompareTo((T)root.data) != 0)
                 {
                     list[0] = (T)node.data;
                 }
@@ -188,13 +191,13 @@ namespace AlgoDataStructures
                         else
                         {
                             list[i + 1] = list[i];
-                            list[i] = node.data;
+                            list[i] = (T)node.data;
                         }
                     }
-                    Counter(node.leftLeaf);
-                    Counter(node.rightLeaf);
-                }
+                    AddInOrder(list, node.leftLeaf);
+                    AddInOrder(list, node.rightLeaf);
             }
+        }
             return list;
         }
     }

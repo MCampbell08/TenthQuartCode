@@ -36,6 +36,8 @@ namespace BinarySearch
             Console.WriteLine(binarySearchTree.Count);
 
             Console.WriteLine(binarySearchTree.Height());
+
+            string inOrder = binarySearchTree.InOrder();
         }
     }
 }
