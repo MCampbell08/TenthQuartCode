@@ -14,6 +14,7 @@ namespace AlgoDataStructures
             public object data = null;
         }
         private int _count = 0;
+        private int counter = 0;
         private Node root = null;
         public void Add(T val)
         {
@@ -162,43 +163,89 @@ namespace AlgoDataStructures
         }
         public string InOrder()
         {
+            counter = 0;
             StringBuilder stringBuilder = new StringBuilder();
             T[] list = new T[Count];
 
-            for (int i = 0; i < Count - 1; i++)
-                list[i] = default(T);
-                
-            AddInOrder(list, root);
+            ToArray(list, root);
+
+            BubbleSort(list);
+
+            for (int i = 0; i < Count; i++)
+                stringBuilder.Append((i < Count - 1) ? list[i] + ", ": list[i] + "");
 
             return stringBuilder.ToString();
-        }
-        private T[] AddInOrder(T[] list, Node node)
+        }   
+        public T[] ToArray(T[] list, Node node)
         {
             if (node != null)
             {
-                if (list[0].CompareTo((T)root.data) != 0)
+                list[counter] = (T)node.data;
+                counter++;
+                ToArray(list, node.leftLeaf);
+                ToArray(list, node.rightLeaf);
+            }
+            return list;
+        }
+        private static void BubbleSort(T[] inputArray)
+        {
+            bool done = false;
+            while (!done)
+            {
+                int counter = 0;
+                done = true;
+                while (counter < inputArray.Length - 1)
                 {
-                    list[0] = (T)node.data;
-                }
-                else
-                {
-                    for (int i = 0; i < list.Length; i++)
+                    if (inputArray[counter + 1].CompareTo(inputArray[counter]) < 0)
                     {
-                        if (list[i].CompareTo(node.data) <= 0)
-                        {
-                            list[i + 1] = (T)node.data;
-                        }
-                        else
-                        {
-                            list[i + 1] = list[i];
-                            list[i] = (T)node.data;
-                        }
+                        T tempObject = inputArray[counter + 1];
+                        inputArray[counter + 1] = inputArray[counter];
+                        inputArray[counter] = tempObject;
+                        done = false;
                     }
-                    AddInOrder(list, node.leftLeaf);
-                    AddInOrder(list, node.rightLeaf);
+                    else
+                    {
+                        counter++;
+                    }
+                }
             }
         }
-            return list;
+        public string PreOrder()
+        {
+            counter = 0;
+            StringBuilder stringBuilder = new StringBuilder();
+            T[] list = new T[Count];
+
+            ToArray(list, root);
+
+            for (int i = 0; i < Count; i++)
+                stringBuilder.Append((i < Count - 1) ? list[i] + ", " : list[i] + "");
+
+            return stringBuilder.ToString();
+        }
+        public string PostOrder()
+        {
+            counter = 0;
+            StringBuilder stringBuilder = new StringBuilder();
+            T[] list = new T[Count];
+
+            AddPostOrder(list, root);
+
+            for (int i = 0; i < Count; i++)
+                stringBuilder.Append((i < Count - 1) ? list[i] + ", " : list[i] + "");
+
+            return stringBuilder.ToString();
+        }
+
+        private void AddPostOrder(T[] list, Node node)
+        {
+            if (node != null)
+            {
+                AddPostOrder(list, node.leftLeaf);
+                AddPostOrder(list, node.rightLeaf);
+                list[counter] = (T)node.data;
+                counter++;
+            }
         }
     }
 }

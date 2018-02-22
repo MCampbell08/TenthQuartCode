@@ -6,7 +6,7 @@ namespace SortingLibrary
 {
     public class Sorter<T> where T : IComparable
     {
-        public static void BubbleSort(T[] inputArray)
+        private static void BubbleSort(T[] inputArray)
         {
             bool done = false;
             while (!done) {

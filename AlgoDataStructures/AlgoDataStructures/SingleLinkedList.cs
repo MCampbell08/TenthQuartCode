@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace AlgoDataStrucutres
+namespace AlgoDataStructures
 {
     public class SingleLinkedList <T>
     {
