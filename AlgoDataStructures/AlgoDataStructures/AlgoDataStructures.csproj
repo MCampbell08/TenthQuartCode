@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <AssemblyName>MCampbell_AlgoDataStructures</AssemblyName>
+    <RootNamespace>AlgoDataStructures</RootNamespace>
   </PropertyGroup>
 
 </Project>

@@ -70,7 +70,7 @@ namespace AlgoDataStructures
             CheckInbounds(index);
 
             Node node = root;
-            for (int i = 0; i < index; i++)
+            for (int i = 0; i < index - 1; i++)
                 node = node.nextNode;
             return (T)node.data;
         }
