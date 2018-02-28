@@ -120,7 +120,8 @@ namespace AlgoDataStructures
         }
         public int Count
         {
-            get {
+            get
+            {
                 _count = 0;
                 Counter(root);
                 return _count;
@@ -172,10 +173,10 @@ namespace AlgoDataStructures
             BubbleSort(list);
 
             for (int i = 0; i < Count; i++)
-                stringBuilder.Append((i < Count - 1) ? list[i] + ", ": list[i] + "");
+                stringBuilder.Append((i < Count - 1) ? list[i] + ", " : list[i] + "");
 
             return stringBuilder.ToString();
-        }   
+        }
         public T[] ToArray(T[] list, Node node)
         {
             if (node != null)

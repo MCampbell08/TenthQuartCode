@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AlgoDataStructures
 {
-    public class SingleLinkedList <T>
+    public class SingleLinkedList<T>
     {
         public class Node
         {
@@ -56,7 +56,8 @@ namespace AlgoDataStructures
             }
             if (index == 0)
                 root = new Node { data = val, nextNode = currNode };
-            else {
+            else
+            {
                 nextNode = currNode;
 
                 currNode = new Node { data = val, nextNode = nextNode };
@@ -64,7 +65,7 @@ namespace AlgoDataStructures
             }
             _count++;
         }
-        public int Count { get { return _count; }}
+        public int Count { get { return _count; } }
         public T Get(int index)
         {
             CheckInbounds(index);
