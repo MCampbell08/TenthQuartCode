@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgoDataStructures", "AlgoDataStructures\AlgoDataStructures.csproj", "{B81F2BE9-20B3-4F43-BE16-A3EFBEB3E2E7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestTheLibrary", "TestTheLibrary\TestTheLibrary.csproj", "{967CE565-B581-4999-8070-737745F1D143}"
+=======
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgoDataStructures", "AlgoDataStructures\AlgoDataStructures.csproj", "{758D3578-0EC3-4432-9CE2-E38C3B949706}"
+>>>>>>> origin/master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

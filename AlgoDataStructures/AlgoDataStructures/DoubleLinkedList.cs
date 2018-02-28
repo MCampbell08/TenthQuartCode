@@ -169,13 +169,13 @@ namespace AlgoDataStructures
             if (Count / 2 >= index)
             {
                 node = root;
-                for (int i = 0; i < index; i++)
+                for (int i = 0; i < index - 1; i++)
                     node = node.nextNode;
             }
             else
             {
                 node = Last;
-                for (int i = Count; i > index; i--)
+                for (int i = Count; i > index + 1; i--)
                     node = node.prevNode;
             }
 
