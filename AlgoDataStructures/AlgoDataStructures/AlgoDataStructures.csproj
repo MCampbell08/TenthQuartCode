@@ -1,14 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-<<<<<<< HEAD
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>AlgoDataStructures_MCampbell</AssemblyName>
-=======
-    <TargetFramework>netcoreapp2.0</TargetFramework>
-    <AssemblyName>MCampbell_AlgoDataStructures</AssemblyName>
-    <RootNamespace>AlgoDataStructures</RootNamespace>
->>>>>>> origin/master
   </PropertyGroup>
 
 </Project>
