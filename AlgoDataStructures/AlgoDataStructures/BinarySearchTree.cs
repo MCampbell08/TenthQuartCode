@@ -12,6 +12,12 @@ namespace AlgoDataStructures
             public Node rightLeaf = null;
             public Node parentLeaf = null;
             public object data = null;
+            public bool isRemoved = false;
+            public int balanceFactor = 0;
+        }
+        public class AVLTree
+        {
+
         }
         private int _count = 0;
         private int counter = 0;
@@ -33,6 +39,11 @@ namespace AlgoDataStructures
         private static bool PlaceNode(T val, Node node, ref Node currNode, ref Node prevNode)
         {
             bool nodePlaced = false;
+            if (currNode.isRemoved)
+            {
+                currNode.data = val;
+                currNode.isRemoved = false;
+            }
             if (val.CompareTo(currNode.data) < 0)
             {
                 if (currNode.leftLeaf != null)
@@ -63,8 +74,13 @@ namespace AlgoDataStructures
                     nodePlaced = true;
                 }
             }
+            UpdateBalanceFactor();
 
             return nodePlaced;
+        }
+        private static void UpdateBalanceFactor()
+        {
+
         }
         public bool Contains(T val)
         {
@@ -96,22 +112,24 @@ namespace AlgoDataStructures
         {
             FindLeaf(val, ref root);
         }
-        private void FindLeaf(T val, ref Node curr)
+        private bool FindLeaf(T val, ref Node curr)
         {
+            bool returnNow = false;
             if (val.CompareTo(curr.data) == 0)
             {
-                curr = null;
+                curr.isRemoved = true;
                 _count--;
+                return true;
             }
-
             if (curr != null)
             {
-                if (val.CompareTo(curr.data) < 0)
-                    FindLeaf(val, ref curr.leftLeaf);
+                if (val.CompareTo(curr.data) < 0 && !returnNow)
+                    returnNow = FindLeaf(val, ref curr.leftLeaf);
 
-                if (val.CompareTo(curr.data) > 0)
-                    FindLeaf(val, ref curr.rightLeaf);
+                if (val.CompareTo(curr.data) > 0 && !returnNow)
+                    returnNow = FindLeaf(val, ref curr.rightLeaf);
             }
+            return returnNow;            
         }
         public void Clear()
         {
@@ -134,6 +152,8 @@ namespace AlgoDataStructures
         {
             if (node != null)
             {
+                Node def = new Node { data = '0'};
+                if (node.isRemoved) _count--;
                 _count++;
                 Counter(node.leftLeaf);
                 Counter(node.rightLeaf);
@@ -168,7 +188,7 @@ namespace AlgoDataStructures
             StringBuilder stringBuilder = new StringBuilder();
             T[] list = new T[Count];
 
-            ToArray(list, root);
+            ArrayLooper(list, root);
 
             BubbleSort(list);
 
@@ -177,14 +197,26 @@ namespace AlgoDataStructures
 
             return stringBuilder.ToString();
         }
-        public T[] ToArray(T[] list, Node node)
+        public T[] ToArray()
+        {
+            counter = 0;
+            T[] list = ArrayLooper(new T[Count], root);
+
+            BubbleSort(list);
+
+            return list;
+        }
+        private T[] ArrayLooper(T[] list, Node node)
         {
             if (node != null)
             {
-                list[counter] = (T)node.data;
-                counter++;
-                ToArray(list, node.leftLeaf);
-                ToArray(list, node.rightLeaf);
+                if (!node.isRemoved)
+                {
+                    counter++;
+                    list[counter - 1] = (T)node.data;
+                }
+                ArrayLooper(list, node.leftLeaf);
+                ArrayLooper(list, node.rightLeaf);
             }
             return list;
         }
@@ -217,7 +249,7 @@ namespace AlgoDataStructures
             StringBuilder stringBuilder = new StringBuilder();
             T[] list = new T[Count];
 
-            ToArray(list, root);
+            ArrayLooper(list, root);
 
             for (int i = 0; i < Count; i++)
                 stringBuilder.Append((i < Count - 1) ? list[i] + ", " : list[i] + "");

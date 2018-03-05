@@ -126,8 +126,8 @@ namespace AlgoDataStructures
 
             StringBuilder stringBuilder = new StringBuilder();
             Node node = root;
-
-            stringBuilder.Append(node.data + ", ");
+            
+            stringBuilder.Append((Count > 1) ? node.data + ", " : node.data);
 
             for (int i = 0; i < Count - 1; i++)
             {
@@ -169,13 +169,13 @@ namespace AlgoDataStructures
             if (Count / 2 >= index)
             {
                 node = root;
-                for (int i = 0; i < index - 1; i++)
+                for (int i = 0; i < index; i++)
                     node = node.nextNode;
             }
             else
             {
                 node = Last;
-                for (int i = Count; i > index + 1; i--)
+                for (int i = Count; i > index; i--)
                     node = node.prevNode;
             }
 
