@@ -70,7 +70,6 @@ namespace AlgoDataStructures
                     nodePlaced = true;
                 }
             }
-            //UpdateBalanceFactor();
 
             return nodePlaced;
         }
