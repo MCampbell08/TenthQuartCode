@@ -15,10 +15,6 @@ namespace AlgoDataStructures
             public bool isRemoved = false;
             public int balanceFactor = 0;
         }
-        public class AVLTree
-        {
-
-        }
         private int _count = 0;
         private int counter = 0;
         private Node root = null;
@@ -36,7 +32,7 @@ namespace AlgoDataStructures
                     nodePlaced = PlaceNode(val, node, ref currNode, ref prevNode);
             }
         }
-        private static bool PlaceNode(T val, Node node, ref Node currNode, ref Node prevNode)
+        private bool PlaceNode(T val, Node node, ref Node currNode, ref Node prevNode)
         {
             bool nodePlaced = false;
             if (currNode.isRemoved)
@@ -74,14 +70,11 @@ namespace AlgoDataStructures
                     nodePlaced = true;
                 }
             }
-            UpdateBalanceFactor();
+            //UpdateBalanceFactor();
 
             return nodePlaced;
         }
-        private static void UpdateBalanceFactor()
-        {
-
-        }
+        
         public bool Contains(T val)
         {
             if (root == null)
