@@ -27,17 +27,12 @@ namespace AlgoDataStructures
         #region Public Methods
         public void Add(T val)
         {
-            Node node = new Node { data = val }, currNode = root, prevNode = root;
+            Node node = new Node { data = val };
 
             if (root == null)
                 root = node;
             else
-            {
-                bool nodePlaced = false;
-
-                while (!nodePlaced)
-                    nodePlaced = PlaceNode(val, node, ref currNode, ref prevNode);
-            }
+                root = Insert(root, node);
         }
         public bool Contains(T val)
         {
@@ -48,7 +43,7 @@ namespace AlgoDataStructures
         }
         public void Remove(T val)
         {
-            FindLeaf(val, ref root);
+            root = FindLeaf(val, root);
         }
         public void Clear()
         {
@@ -126,48 +121,25 @@ namespace AlgoDataStructures
         #endregion
 
         #region Private Methods
-        private bool PlaceNode(T val, Node node, ref Node currNode, ref Node prevNode)
+        private Node Insert(Node currNode, Node newNode)
         {
-            bool nodePlaced = false;
-            if (currNode.isRemoved)
+            T val = (T)newNode.data;
+            if (currNode == null)
             {
-                currNode.data = val;
-                currNode.isRemoved = false;
+                currNode = newNode;
+                return currNode;
             }
-            if (val.CompareTo(currNode.data) < 0)
+            else if (val.CompareTo(currNode.data) < 0)
             {
-                if (currNode.leftLeaf != null)
-                {
-                    prevNode = currNode;
-                    currNode = currNode.leftLeaf;
-                    currNode.parentLeaf = prevNode;
-                }
-                else
-                {
-                    currNode.leftLeaf = node;
-                    currNode.leftLeaf.parentLeaf = currNode;
-                    nodePlaced = true;
-                }
+                currNode.leftLeaf = Insert(currNode.leftLeaf, newNode);
                 currNode = BalanceTree(currNode);
             }
             else if (val.CompareTo(currNode.data) >= 0)
             {
-                if (currNode.rightLeaf != null)
-                {
-                    prevNode = currNode;
-                    currNode = currNode.rightLeaf;
-                    currNode.parentLeaf = prevNode;
-                }
-                else
-                {
-                    currNode.rightLeaf = node;
-                    currNode.rightLeaf.parentLeaf = currNode;
-                    nodePlaced = true;
-                }
+                currNode.rightLeaf = Insert(currNode.rightLeaf, newNode);
                 currNode = BalanceTree(currNode);
             }
-
-            return nodePlaced;
+            return currNode;
         }
         private Node BalanceTree(Node node)
         {
@@ -210,44 +182,94 @@ namespace AlgoDataStructures
 
             return false;
         }
-        private bool FindLeaf(T val, ref Node curr)
+        private Node FindLeaf(T val, Node currNode)
         {
-            bool returnNow = false;
-            if (val.CompareTo(curr.data) == 0)
+            if (currNode != null)
             {
-                curr.isRemoved = true;
-                _count--;
-                return true;
-            }
-            if (curr != null)
-            {
-                if (val.CompareTo(curr.data) < 0 && !returnNow)
+                if (val.CompareTo(currNode.data) < 0)
                 {
-                    returnNow = FindLeaf(val, ref curr.leftLeaf);
-                    if(GetBalanceFactor(curr) == -2)
+                    currNode.leftLeaf = FindLeaf(val, currNode.leftLeaf);
+                    if(GetBalanceFactor(currNode) == -2)
                     {
-                        if (GetBalanceFactor(curr.rightLeaf) <= 0)
-                            curr = RotateRightR(curr);
+                        if (GetBalanceFactor(currNode.rightLeaf) <= 0)
+                            currNode = RotateRightR(currNode);
                         else
-                            curr = RotateRightL(curr);
+                            currNode = RotateRightL(currNode);
                     }
                 }
-
-                if (val.CompareTo(curr.data) > 0 && !returnNow)
+                else if (val.CompareTo(currNode.data) > 0)
                 {
-                    returnNow = FindLeaf(val, ref curr.rightLeaf);
-
-                    if (GetBalanceFactor(curr) == 2)
+                    currNode.rightLeaf = FindLeaf(val, currNode.rightLeaf);
+                    if (GetBalanceFactor(currNode) == 2)
                     {
-                        if (GetBalanceFactor(curr.leftLeaf) >= 0)
-                            curr = RotateLeftL(curr);
+                        if (GetBalanceFactor(currNode.leftLeaf) <= 0)
+                            currNode = RotateLeftL(currNode);
                         else
-                            curr = RotateLeftR(curr);
+                            currNode = RotateLeftR(currNode);
+                    }
+                }
+                else
+                {
+                    if (currNode.rightLeaf != null)
+                    {
+                        Node tempNode = currNode.rightLeaf;
+                        while (tempNode.leftLeaf != null)
+                            tempNode = tempNode.leftLeaf;
+
+                        currNode.data = tempNode.data;
+                        currNode.rightLeaf = FindLeaf((T)tempNode.data, currNode.rightLeaf);
+                        if (GetBalanceFactor(currNode.leftLeaf) >= 0)
+                            currNode = RotateLeftL(currNode);
+                        else
+                            currNode = RotateLeftR(currNode);
+                    }
+                    else
+                    {
+                        return currNode.leftLeaf;
                     }
                 }
             }
-            return returnNow;
+
+            return currNode;
         }
+        //private bool FindLaf(T val, ref Node curr)
+        //{
+        //    bool returnNow = false;
+        //    if (val.CompareTo(curr.data) == 0)
+        //    {
+        //        curr.isRemoved = true;
+        //        _count--;
+        //        return true;
+        //    }
+        //    if (curr != null)
+        //    {
+        //        if (val.CompareTo(curr.data) < 0 && !returnNow)
+        //        {
+        //            returnNow = FindLeaf(val,  curr.leftLeaf);
+        //            if(GetBalanceFactor(curr) == -2)
+        //            {
+        //                if (GetBalanceFactor(curr.rightLeaf) <= 0)
+        //                    curr = RotateRightR(curr);
+        //                else
+        //                    curr = RotateRightL(curr);
+        //            }
+        //        }
+
+        //        if (val.CompareTo(curr.data) > 0 && !returnNow)
+        //        {
+        //            returnNow = FindLeaf(val,  curr.rightLeaf);
+
+        //            if (GetBalanceFactor(curr) == 2)
+        //            {
+        //                if (GetBalanceFactor(curr.leftLeaf) >= 0)
+        //                    curr = RotateLeftL(curr);
+        //                else
+        //                    curr = RotateLeftR(curr);
+        //            }
+        //        }
+        //    }
+        //    return returnNow;
+        //}
         private void Counter(Node node)
         {
             if (node != null)
@@ -347,15 +369,18 @@ namespace AlgoDataStructures
             Node rightPivotNode = node.rightLeaf;
             node.rightLeaf = RotateLeftL(rightPivotNode);
 
-            return RotateLeftL(node);
+            return RotateRightR(node);
         }
         private T[] AddAtGivenLevel(Node node, int level, T[] list)
         {
             if (node != null)
             {
                 if (level == 1)
+                {
                     list[counter] = (T)node.data;
-                else if(level > 1)
+                    counter++;
+                }
+                else if (level > 1)
                 {
                     list = AddAtGivenLevel(node.leftLeaf, level - 1, list);
                     list = AddAtGivenLevel(node.rightLeaf, level - 1, list);

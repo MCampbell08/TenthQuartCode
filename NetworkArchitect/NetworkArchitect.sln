@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeSolver", "MazeSolver\MazeSolver.csproj", "{DC1C03C9-182E-4797-982F-4B86FAF58C2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetworkArchitect", "NetworkArchitect\NetworkArchitect.csproj", "{1951AE8B-C471-4DE2-98E4-F7D095C3069E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DC1C03C9-182E-4797-982F-4B86FAF58C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC1C03C9-182E-4797-982F-4B86FAF58C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC1C03C9-182E-4797-982F-4B86FAF58C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC1C03C9-182E-4797-982F-4B86FAF58C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1951AE8B-C471-4DE2-98E4-F7D095C3069E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1951AE8B-C471-4DE2-98E4-F7D095C3069E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1951AE8B-C471-4DE2-98E4-F7D095C3069E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1951AE8B-C471-4DE2-98E4-F7D095C3069E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E5EB895D-2513-44F0-BFAF-D981B67F8A1E}
+		SolutionGuid = {8135CD12-0FE3-42B5-A983-62FA6512CD21}
 	EndGlobalSection
 EndGlobal
