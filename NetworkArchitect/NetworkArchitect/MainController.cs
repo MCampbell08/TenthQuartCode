@@ -11,6 +11,9 @@ namespace NetworkArchitect
 {
     public class MainController
     {
+        private List<Socket> mainSockets = new List<Socket>();
+        private List<Tuple<Socket, Tuple<Socket, int>>> socketConnection = new List<Tuple<Socket, Tuple<Socket, int>>>();
+        private Regex r = new Regex("^[a-zA-Z0-9]+$");
         public void ReadFile()
         {
             Console.Write("Please enter a file location for NetworkArchitect: ");
@@ -19,16 +22,37 @@ namespace NetworkArchitect
             fileLocation = FileUtility.CheckFileLocation(fileLocation);
 
             StreamReader stream = new StreamReader(fileLocation);
-            Regex r = new Regex("^[a-zA-Z0-9]*$");
 
             for (int i = 0; (line = stream.ReadLine()) != null; i++)
             {
-                if(i == 0 && r.IsMatch(line))
+                if (i == 0) //Sockets
+                    AddSockets(line);
+                else
+                    AddSocketConnections(line);
+            }
+        }
+        private void AddSockets(string line)
+        {
+            string[] sockets = line.Split(',');
 
-                if (i == 0 &&) //Sockets
-                {
+            foreach (string s in sockets)
+            {
+                if (!r.IsMatch(s))
+                    throw new Exception("One of sockets are invalid, please fix and try again.");
+                mainSockets.Add(new Socket() { ID = s.Trim() });
+            }
+        }
+        private void AddSocketConnections(string line)
+        {
+            string[] sockets = line.Split(',');
+            string[] socketInfo = null;
 
-                }
+            foreach (string s in sockets)
+            {
+                if (!r.IsMatch(s))
+                    throw new Exception("One of sockets are invalid, please fix and try again.");
+
+                socketInfo = s.Split(':');  
             }
         }
     }
