@@ -52,7 +52,9 @@ namespace NetworkArchitect
                 if (!r.IsMatch(s))
                     throw new Exception("One of sockets are invalid, please fix and try again.");
 
-                socketInfo = s.Split(':');  
+                socketInfo = s.Split(':');
+                Tuple<Socket, Tuple<Socket, int>> connection = new Tuple<Socket, Tuple<Socket, int>>() {  };
+                socketConnection.Add(new Tuple<Socket, Tuple<Socket, int>> { new Socket { ID = sockets[0]}, new Tuple<Socket, int> { new Socket { ID = socketInfo[0]}, Int32.Parse(socketInfo[1]) } });
             }
         }
     }
