@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgoDataStructures", "AlgoDataStructures\AlgoDataStructures.csproj", "{B81F2BE9-20B3-4F43-BE16-A3EFBEB3E2E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{195FDE4C-9BF7-490B-835B-9C778B4DB674}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgoDataTests", "AlgoDataTests\AlgoDataTests.csproj", "{107824D8-BE14-416B-8C2E-66D70DFF4528}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{B81F2BE9-20B3-4F43-BE16-A3EFBEB3E2E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B81F2BE9-20B3-4F43-BE16-A3EFBEB3E2E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B81F2BE9-20B3-4F43-BE16-A3EFBEB3E2E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{195FDE4C-9BF7-490B-835B-9C778B4DB674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{195FDE4C-9BF7-490B-835B-9C778B4DB674}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{195FDE4C-9BF7-490B-835B-9C778B4DB674}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{195FDE4C-9BF7-490B-835B-9C778B4DB674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{107824D8-BE14-416B-8C2E-66D70DFF4528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{107824D8-BE14-416B-8C2E-66D70DFF4528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{107824D8-BE14-416B-8C2E-66D70DFF4528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{107824D8-BE14-416B-8C2E-66D70DFF4528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

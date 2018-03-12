@@ -49,12 +49,11 @@ namespace NetworkArchitect
 
             foreach (string s in sockets)
             {
-                if (!r.IsMatch(s))
-                    throw new Exception("One of sockets are invalid, please fix and try again.");
-
-                socketInfo = s.Split(':');
-                Tuple<Socket, Tuple<Socket, int>> connection = new Tuple<Socket, Tuple<Socket, int>>() {  };
-                socketConnection.Add(new Tuple<Socket, Tuple<Socket, int>> { new Socket { ID = sockets[0]}, new Tuple<Socket, int> { new Socket { ID = socketInfo[0]}, Int32.Parse(socketInfo[1]) } });
+                if (s != sockets[0])
+                {
+                    socketInfo = s.Split(':');
+                    socketConnection.Add(new Tuple<Socket, Tuple<Socket, int>>(new Socket() { ID = sockets[0] }, new Tuple<Socket, int>(new Socket() { ID = socketInfo[0] }, Int32.Parse(socketInfo[1]))));
+                }
             }
         }
     }
