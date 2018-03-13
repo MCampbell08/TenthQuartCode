@@ -90,10 +90,14 @@ namespace AlgoDataStructures
             CheckInbounds(index);
 
             Node node = root;
+            Node prevNode = null;
 
             for (int i = 0; i < index; i++)
+            {
+                prevNode = node;
                 node = node.nextNode;
-
+            }
+            prevNode.nextNode = node.nextNode;
             _count--;
 
             return (T)node.data;

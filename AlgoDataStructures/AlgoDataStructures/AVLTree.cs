@@ -218,10 +218,9 @@ namespace AlgoDataStructures
 
                         currNode.data = tempNode.data;
                         currNode.rightLeaf = FindLeaf((T)tempNode.data, currNode.rightLeaf);
-                        if (GetBalanceFactor(currNode.leftLeaf) >= 0)
-                            currNode = RotateLeftL(currNode);
-                        else
-                            currNode = RotateLeftR(currNode);
+
+                        if (currNode == root.rightLeaf)
+                            return currNode;
                     }
                     else
                     {

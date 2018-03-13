@@ -45,6 +45,7 @@
     <Compile Include="MainController.cs" />
     <Compile Include="Models\Edge.cs" />
     <Compile Include="Models\SocketMap.cs" />
+    <Compile Include="Models\Subset.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Socket.cs" />
